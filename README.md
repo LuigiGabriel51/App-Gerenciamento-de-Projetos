@@ -1,4 +1,8 @@
 # ServiceHub - Gerenciamento de Projetos e Comunicação
+[![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://www.microsoft.com/en-us/)
+[![C#](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://www.microsoft.com/en-us/)
+[![C#](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.microsoft.com/en-us/)
+[![C#](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://www.microsoft.com/en-us/)
 
 O ServiceHub é um sistema completo de gerenciamento de projetos e comunicação que permite às equipes colaborar de forma eficiente e manter um fluxo de trabalho organizado. Ele inclui um aplicativo de gerenciamento de projetos e uma API para fornecer funcionalidades de backend.
 
