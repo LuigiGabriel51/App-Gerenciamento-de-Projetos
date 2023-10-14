@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "264628473525",
+    "firebase_url": "https://cooksmart-4f3d6-default-rtdb.firebaseio.com",
+    "project_id": "cooksmart-4f3d6",
+    "storage_bucket": "cooksmart-4f3d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264628473525:android:93f29e1d085b9a779af8fc",
+        "android_client_info": {
+          "package_name": "com.companyname.servicehub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264628473525-jmejvuqllctck6vlnauq1vctn31afl2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7hxkOVikiHv-rFLbNRzfNCYv_hD2q45g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264628473525-jmejvuqllctck6vlnauq1vctn31afl2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

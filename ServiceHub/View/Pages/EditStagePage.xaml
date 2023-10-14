@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ServiceHub.View.Pages.EditStagePage"
+             xmlns:VM="clr-namespace:ServiceHub.ViewModel"
+             xmlns:Models="clr-namespace:ServiceHub.Model">
+
+    <ContentPage.BindingContext>
+        <VM:VMEditStage/>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Editar Estágio" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+            <StackLayout Padding="20" Spacing="20" BackgroundColor="{AppThemeBinding Dark=Black,Light=White}" Grid.Row="1">
+                <Label Text="{Binding Stages.NameStage, StringFormat='Estágio: {0}'}" 
+                                                                           TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Row="0" />
+                <Entry BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"
+                           Text="{Binding NewStages.NameStage}" TextColor="{AppThemeBinding Dark=Black,Light=White}"
+                           MaxLength="35" PlaceholderColor="Silver" Placeholder="Nome do estágio"/>
+                <Label Text="{Binding Stages.Description, StringFormat='Descrição: {0}'}" 
+                                                                           TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Row="1"/>
+                <Editor BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"
+                        Text="{Binding NewStages.Description}" TextColor="{AppThemeBinding Dark=Black,Light=White}"
+                        HeightRequest="100" AutoSize="TextChanges" PlaceholderColor="Silver"
+                        Placeholder="Descrição do estágio" MaxLength="155"
+                        />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding Stages.DateInit, StringFormat='Data de Início: {0:dd/MM/yyyy}'}" 
+                           TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Column="0" VerticalOptions="Center"
+                           HorizontalOptions="Start"/>
+                    <DatePicker Date="{Binding NewStages.DateInit}" Grid.Column="1" VerticalOptions="Center"
+                           HorizontalOptions="Center" BackgroundColor="LightPink" FontAttributes="Bold"/>
+                </Grid>
+                <Label Text="{Binding Stages.TimeFrame, StringFormat='Prazo de Conclusão: {0} dias'}"
+                                               TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Row="3"/>
+                <Entry Keyboard="Numeric" Text="{Binding NewStages.TimeFrame}" BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"
+                       TextColor="{AppThemeBinding Dark=Black,Light=White}" MaxLength="4"
+                       PlaceholderColor="Silver" Placeholder="Prazo de conclusão"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="10" x:Name="conclusao">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Stages.Conclusao}" Value="True">
+                                <Setter Property="TextColor" Value="Green" />
+                                <Setter Property="Text" Value="Concluído" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding Stages.Conclusao}" Value="False">
+                                <Setter Property="TextColor" Value="Red" />
+                                <Setter Property="Text" Value="Em andamento" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Switch IsToggled="{Binding NewStages.Conclusao}" Toggled="Switch_Toggled" x:Name="key"
+                                Grid.Column="1" OnColor="LightGreen" ThumbColor="LightPink"/>
+                </Grid>
+                <Button Grid.Row="5" WidthRequest="150" Text="Salvar Projeto" Command="{Binding Update_Project}" HeightRequest="40"
+        Margin="10" BackgroundColor="CadetBlue" FontAttributes="Bold" TextColor="White"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

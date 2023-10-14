@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ServiceHub.View.Pages.HomePage"
+             xmlns:ViewModel="clr-namespace:ServiceHub.ViewModel">
+    <ContentPage.BindingContext>
+        <ViewModel:VMHomePage/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Label Text="{Binding Cargo}" Margin="20,20,0,0"/>
+        <HorizontalStackLayout Spacing="80" Margin="0,0,0,100">
+            <Label Text="{Binding Name}" Grid.Row="1" VerticalOptions="Center" FontAttributes="Bold" Margin="20,0,0,0"/>
+            <Frame WidthRequest="60" HeightRequest="60" HorizontalOptions="End" 
+                   CornerRadius="40" 
+               Padding="0" Margin="0,0,0,0" BorderColor="Transparent">
+                <Image Source="{Binding ImagePerfil}" />
+            </Frame>
+        </HorizontalStackLayout>
+        <Grid Padding="20" RowSpacing="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame HeightRequest="180" CornerRadius="15" BackgroundColor="LightGreen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Hoje" HorizontalOptions="Start" FontAttributes="Bold" Margin="10"/>
+                    <ListView ItemsSource="{Binding stages}" Grid.Row="1" VerticalOptions="Center"
+                              HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid HeightRequest="70">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="30"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Text="{Binding NameStage}" VerticalOptions="Center" Grid.Row="0" 
+                                               FontAttributes="Bold" FontSize="16" Margin="5,0,0,0"/>
+                                        <Label Text="{Binding DateInit, StringFormat='{0:dd/mm/yyyy}'}" Grid.Row="1"
+                                               Margin="5,0,0,0"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Triggers>
+                            <DataTrigger TargetType="ListView" Binding="{Binding stages.Count}" Value="0">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </ListView.Triggers>
+                    </ListView>
+                    <Label Text="Nenhuma atividade para hoje" VerticalOptions="Center" Grid.Row="1">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding stages.Count}" Value="0">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </Grid>
+            </Frame>
+            <Grid Grid.Row="1" HeightRequest="300">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" BackgroundColor="CornflowerBlue" Padding="0"
+                       VerticalOptions="End" HeightRequest="200" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Text="Em progresso" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        
+                        <Border StrokeThickness="4" Margin="5"
+                                StrokeShape="Ellipse"
+                                Background="CornflowerBlue"
+                                Padding="19,50,10,30"
+                                HorizontalOptions="Center" Grid.Row="1"> 
+                            <Border.Stroke>
+                                <LinearGradientBrush EndPoint="0,1">
+                                    <GradientStop Color="White"
+                                                  Offset="0.1" />
+                                    <GradientStop Color="Black"
+                                                  Offset="2.0" />
+                                </LinearGradientBrush>
+                            </Border.Stroke>
+                            <Label Text="{Binding NumProjects, StringFormat='{0} Projeto(s)'}"
+                                   TextColor="White"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                        </Border>
+                    </Grid>
+                </Frame>
+                <Frame Grid.Column="0" Grid.Row="2" Margin="10" Padding="0" BackgroundColor="Silver">
+                    <Button Text="Novas mensagens 🔔" CharacterSpacing="-1" Padding="0" TextColor="White" BackgroundColor="Silver"
+                            Clicked="push_mensagens"/>
+                </Frame>
+                <Frame Grid.Column="0" Grid.Row="1" Margin="10" Padding="0" BackgroundColor="Silver">
+                    <Button Padding="0" TextColor="White" BackgroundColor="YellowGreen" Clicked="projetos">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Chefe">
+                                <Setter Property="Text" Value="Criar Projeto 📝"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Gerente">
+                                <Setter Property="Text" Value="Criar Projeto 📝"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Funcionário">
+                                <Setter Property="Text" Value="Ver Projetos"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Frame>
+                <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="10" Padding="0">
+                    <Label Text="Novas mensagens" Padding="0" TextColor="White" BackgroundColor="DarkSalmon"
+/>
+                </Frame>
+            </Grid>
+        </Grid>           
+    </VerticalStackLayout>
+</ContentPage>

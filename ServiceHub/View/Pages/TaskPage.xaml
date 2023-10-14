@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ServiceHub.View.Pages.TaskPage"
+             xmlns:ViewModel="clr-namespace:ServiceHub.ViewModel"
+             xmlns:Models="clr-namespace:ServiceHub.Model">
+
+    <ContentPage.BindingContext>
+        <ViewModel:VMTaskPage/>
+    </ContentPage.BindingContext>
+    <RefreshView IsRefreshing="{Binding Refresh}"
+             Command="{Binding Refreshing}">
+        <ScrollView HeightRequest="670">
+
+            <Grid Padding="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <ListView ItemsSource="{Binding Projects}" Grid.Row="1" HasUnevenRows="True" SeparatorVisibility="None"
+              SelectionMode="Single" ItemSelected="ListViewShowCard" x:Name="listProjects">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid Padding="0">
+                                    <Frame HeightRequest="100" CornerRadius="10" BackgroundColor="LightPink" Padding="10">
+                                        <Grid ColumnSpacing="20">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70"/>
+                                                <ColumnDefinition Width="160"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Padding="0" CornerRadius="50" HeightRequest="70">
+                                                <Image Source="{Binding ImageSource}" Aspect="Fill" WidthRequest="70"
+                                           HeightRequest="70"/>
+                                            </Frame>
+                                            <Label Text="{Binding Tasks.NameProject}" TextColor="{AppThemeBinding Dark=Black, Light=White}" Grid.Column="1" 
+                                       VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                            <Label/>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Frame Grid.Row="1" x:Name="card" IsVisible="false" Padding="0" BackgroundColor="{AppThemeBinding Dark=White, 
+        Light=LightPink}">
+                    <Grid Padding="10" RowSpacing="10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="90"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Button HeightRequest="40" WidthRequest="40" VerticalOptions="End"
+                    Text="{Static Models:IconFont.SquarePen}" FontFamily="fasolid" Padding="0" BackgroundColor="Transparent"
+                    FontSize="35" TextColor="CadetBlue" Clicked="Button_Clicked_1" HorizontalOptions="Start"
+                    x:Name="buttonEdit">
+                        </Button>
+                        <Button Text="{Static Models:IconFont.DownLeftAndUpRightToCenter}" Clicked="Button_Clicked" 
+                    FontFamily="fasolid" HorizontalOptions="End" TextColor="CadetBlue" BackgroundColor="Transparent" >
+                            <Button.Triggers>
+                                <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                                    <Setter Property="BackgroundColor" Value="Silver" />
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Dark=White, Light=Black}"/>
+                                </Trigger>
+                            </Button.Triggers>
+                        </Button>
+
+                        <Label Text="{Binding Tasks.NameProject}" TextColor="{AppThemeBinding Dark=Black, 
+        Light=White}" Grid.Row="0" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                   VerticalOptions="Center" FontAttributes="Bold" FontSize="11" WidthRequest="160"/>
+                        <Label Text="{Binding Tasks.Users, StringFormat='Integrantes do projeto: {0}'}" Grid.Row="1" 
+                   TextColor="{AppThemeBinding Dark=Black, 
+                    Light=White}" FontSize="12" />
+
+                        <ListView ItemsSource="{Binding Stages}" Grid.Row="2" HasUnevenRows="True" SeparatorVisibility="None"
+                      BackgroundColor="{AppThemeBinding Dark=White, Light=LightPink}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="10">
+                                            <Frame Padding="0" BackgroundColor="{AppThemeBinding Dark=White,Light=White}">
+                                                <VerticalStackLayout Padding="10" Spacing="10">
+                                                    <Label Text="{Binding NameStage, StringFormat='Estágio: {0}'}" 
+                                               TextColor="{AppThemeBinding Dark=Black,Light=Black}" Grid.Row="0" />
+                                                    <Label Text="{Binding Description, StringFormat='Descrição: {0}'}" 
+                                               TextColor="{AppThemeBinding Dark=Black,Light=Black}" Grid.Row="1"/>
+                                                    <Label Text="{Binding DateInit, StringFormat='Data de Início: {0:dd/MM/yyyy}'}" 
+                                               TextColor="{AppThemeBinding Dark=Black,Light=Black}" Grid.Row="2"/>
+                                                    <Label Text="{Binding TimeFrame, StringFormat='Prazo de Conclusão: {0} dias'}"
+                                               TextColor="{AppThemeBinding Dark=Black,Light=Black}" Grid.Row="3"/>
+                                                    <Label Grid.Row="4">
+                                                        <Label.Triggers>
+                                                            <DataTrigger TargetType="Label" Binding="{Binding Conclusao}" Value="True">
+                                                                <Setter Property="TextColor" Value="Green" />
+                                                                <Setter Property="Text" Value="Concluído" />
+                                                            </DataTrigger>
+                                                            <DataTrigger TargetType="Label" Binding="{Binding Conclusao}" Value="False">
+                                                                <Setter Property="TextColor" Value="Red" />
+                                                                <Setter Property="Text" Value="Em andamento" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                    <Button Grid.Row="3" x:Name="buttonEditStages" WidthRequest="120" BackgroundColor="LightPink"
+                                                 Text="Editar Estágio" Padding="0" TextColor="White" FontAttributes="Bold" Clicked="buttonEditStages_Clicked">
+                                                    </Button>
+                                                </VerticalStackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Frame>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Grid.RowSpan="3"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+
+        </ScrollView>
+    </RefreshView>
+</ContentPage>
