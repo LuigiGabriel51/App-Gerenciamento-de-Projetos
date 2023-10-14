@@ -36,13 +36,12 @@ O ServiceHub é um sistema completo de gerenciamento de projetos e comunicação
 2. Navegue para a pasta do aplicativo.
 3. Instale as dependências com o comando:
    ```bash
-   dotnet maui check
-   dotnet maui run
-   Inicie o aplicativo com o comando:   
-  bash
-  Copy code
-  dotnet maui run
-  
+   dotnet maui check 
+4. Inicie o aplicativo com o comando:
+    ```bash
+    dotnet maui run
+    ```
+
 ## API
 Clone o repositório da API.
 Navegue para a pasta da API.
