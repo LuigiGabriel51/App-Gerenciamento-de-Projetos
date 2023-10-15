@@ -2,28 +2,22 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ServiceHub.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceHub.ViewModel
 {
-    public class VMEditProjects: ObservableObject
+    public class VMEditProjects : ObservableObject
     {
         private RestService rest;
         //imagem projeto convertida
         private ImageSource _image;
-        public ImageSource ProjectImage 
+        public ImageSource ProjectImage
         {
             get => _image;
-            set => SetProperty(ref _image, value); 
+            set => SetProperty(ref _image, value);
         }
 
         //projeto
-        public static Project PROJECT {  get; set; }     
+        public static Project PROJECT { get; set; }
         private Project _project;
         public Project Project
         {
@@ -41,17 +35,17 @@ namespace ServiceHub.ViewModel
 
         //lista de integrantes
         private List<string> _integrantes;
-        public List<string> Integrantes 
+        public List<string> Integrantes
         {
             get { return _integrantes; }
             set { SetProperty(ref _integrantes, value); }
         }
 
         private string nomeintegrante;
-        public string NomeIntegrante 
+        public string NomeIntegrante
         {
             get => nomeintegrante;
-            set => SetProperty(ref  nomeintegrante, value);
+            set => SetProperty(ref nomeintegrante, value);
         }
 
         private string _users;
@@ -126,7 +120,7 @@ namespace ServiceHub.ViewModel
                     };
                     await toast.Show();
                 }
-            }           
+            }
         }
         private async Task addIntegrante()
         {
@@ -150,7 +144,7 @@ namespace ServiceHub.ViewModel
                     {
                         Users += $", {nomeintegrante}";
                     }
-                }                
+                }
             }
             else
             {
@@ -162,7 +156,7 @@ namespace ServiceHub.ViewModel
             }
         }
         private async Task deleteintegrante()
-        {           
+        {
             if (!string.IsNullOrEmpty(nomeintegrante))
             {
                 if (Users.Contains(nomeintegrante))

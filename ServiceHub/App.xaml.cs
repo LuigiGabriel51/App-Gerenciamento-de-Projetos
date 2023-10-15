@@ -1,6 +1,4 @@
-﻿using ServiceHub.Model;
-
-namespace ServiceHub
+﻿namespace ServiceHub
 {
     public partial class App : Application
     {

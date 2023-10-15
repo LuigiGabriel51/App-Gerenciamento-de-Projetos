@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ServiceHub.Model
+﻿namespace ServiceHub.Model
 {
     public class TaskModel
     {

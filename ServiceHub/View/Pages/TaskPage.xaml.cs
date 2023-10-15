@@ -8,7 +8,7 @@ public partial class TaskPage : ContentPage
     public TaskPage()
     {
         InitializeComponent();
-        if(InicializeApp.User.LevelPermission == Permission.NV1)
+        if (InicializeApp.User.LevelPermission == Permission.NV1)
         {
             buttonEdit.IsVisible = false;
             buttonEdit.IsEnabled = false;
@@ -20,7 +20,7 @@ public partial class TaskPage : ContentPage
         card.IsVisible = true;
         Project project = (Project)e.SelectedItem;
         card.BindingContext = project;
-        
+
     }
 
     private void Button_Clicked(object sender, EventArgs e)
@@ -41,7 +41,8 @@ public partial class TaskPage : ContentPage
 
     private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
     {
-        if(card.IsVisible == true){
+        if (card.IsVisible == true)
+        {
             card.BindingContext = null;
             listProjects.SelectedItem = null;
             card.IsVisible = false;

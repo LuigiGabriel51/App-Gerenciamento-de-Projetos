@@ -49,7 +49,7 @@ namespace ServiceHubAPI.Controllers
                 var response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
             }
 
-            if(Message.Image == null) { Message.Image = new byte[256]; }
+            if (Message.Image == null) { Message.Image = new byte[256]; }
             await _context.Messages.AddAsync(Message);
             await _context.SaveChangesAsync();
             return Ok(StatusCode(200));

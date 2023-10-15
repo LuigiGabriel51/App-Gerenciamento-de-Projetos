@@ -19,7 +19,7 @@ namespace ServiceHub.ViewModel
             get => _projects;
             set => SetProperty(ref _projects, value);
         }
-        public IAsyncRelayCommand Refreshing {  get; set; }
+        public IAsyncRelayCommand Refreshing { get; set; }
         public VMTaskPage()
         {
             rest = new RestService();

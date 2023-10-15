@@ -13,7 +13,7 @@
             <Frame WidthRequest="60" HeightRequest="60" HorizontalOptions="End" 
                    CornerRadius="40" 
                Padding="0" Margin="0,0,0,0" BorderColor="Transparent">
-                <Image Source="{Binding ImagePerfil}" />
+                <Image Source="{Binding ImagePerfil}" Aspect="AspectFill"/>
             </Frame>
         </HorizontalStackLayout>
         <Grid Padding="20" RowSpacing="50">
@@ -121,8 +121,19 @@
                     </Button>
                 </Frame>
                 <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="10" Padding="0">
-                    <Label Text="Novas mensagens" Padding="0" TextColor="White" BackgroundColor="DarkSalmon"
-/>
+                    <Button Padding="0" TextColor="White" BackgroundColor="DarkSalmon" Clicked="EventEmployes">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Chefe">
+                                <Setter Property="Text" Value="Adicionar/remover funcionário"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Gerente">
+                                <Setter Property="Text" Value="Adicionar/remover funcionário"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Funcionário">
+                                <Setter Property="Text" Value="Outros funcionários"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
                 </Frame>
             </Grid>
         </Grid>           

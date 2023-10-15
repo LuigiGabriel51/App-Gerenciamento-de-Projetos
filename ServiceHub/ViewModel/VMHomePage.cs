@@ -3,18 +3,18 @@ using ServiceHub.Model;
 
 namespace ServiceHub.ViewModel
 {
-    public class VMHomePage: ObservableObject
+    public class VMHomePage : ObservableObject
     {
         private int numproject;
-        public int NumProjects 
-        {  
-            get => numproject; 
-            set => SetProperty(ref numproject, value); 
-        } 
+        public int NumProjects
+        {
+            get => numproject;
+            set => SetProperty(ref numproject, value);
+        }
         private RestService rest;
         private List<StageModel> st;
-        public List<StageModel> stages 
-        { 
+        public List<StageModel> stages
+        {
             get => st;
             set => SetProperty(ref st, value);
         }
