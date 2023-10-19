@@ -7,22 +7,19 @@ public partial class EditStagePage : ContentPage
     public EditStagePage()
     {
         InitializeComponent();
+        date.MinimumDate = DateTime.Now;
     }
 
-
-    private void Switch_Toggled(object sender, ToggledEventArgs e)
+    private void key_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        if (key.IsToggled)
+        CheckBox check = sender as CheckBox;
+        if (check.IsChecked)
         {
             VMEditStage.conclusao = true;
-            conclusao.Text = "Concluído";
-            conclusao.TextColor = Colors.Green;
         }
         else
         {
             VMEditStage.conclusao = false;
-            conclusao.Text = "Em andamento";
-            conclusao.TextColor = Colors.Red;
         }
     }
 }

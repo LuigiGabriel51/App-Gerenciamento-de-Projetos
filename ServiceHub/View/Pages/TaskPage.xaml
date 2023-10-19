@@ -23,7 +23,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell >
-                                <Grid Padding="0">
+                                <Grid Padding="0" Margin="15">
                                     <Frame HeightRequest="100" CornerRadius="10" BackgroundColor="LightPink" Padding="10">
                                         <Grid ColumnSpacing="20">
                                             <Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
                                            HeightRequest="70"/>
                                             </Frame>
                                             <Label Text="{Binding Tasks.NameProject}" TextColor="{AppThemeBinding Dark=Black, Light=White}" Grid.Column="1" 
-                                       VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                       VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" WidthRequest="140" TextTransform="Uppercase" Margin="0,0,6,0"/>
                                             <Label/>
                                         </Grid>
                                     </Frame>
@@ -45,7 +45,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Frame Grid.Row="1" x:Name="card" IsVisible="false" Padding="0" BackgroundColor="{AppThemeBinding Dark=White, 
-        Light=LightPink}">
+                        Light=LightPink}">
                     <Grid Padding="10" RowSpacing="10" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
@@ -113,6 +113,9 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <Button Grid.Row="3" WidthRequest="60" HeightRequest="40" Text="{Static Models:IconFont.Plus}"
+                                BackgroundColor="CadetBlue" FontAttributes="Bold" FontSize="20" Padding="0"
+                                TextColor="White" Clicked="Button_Clicked_2"/>
                     </Grid>
                 </Frame>
                 <Grid.GestureRecognizers>

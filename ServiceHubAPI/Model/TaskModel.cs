@@ -17,6 +17,6 @@ namespace ServiceHubAPI.Model
         public string Description { get; set; }
         public DateTime DateInit { get; set; }
         public int TimeFrame { get; set; }
-        public bool Coclusao { get; set; }
+        public bool Conclusao { get; set; }
     }
 }

@@ -102,7 +102,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <MauiXaml Update="View\Pages\AddProjectsPage.xaml">
+	  <MauiXaml Update="View\Pages\AddProjectPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Pages\EditProjectPage.xaml">

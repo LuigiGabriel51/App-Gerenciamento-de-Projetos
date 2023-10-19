@@ -54,7 +54,19 @@ public partial class TaskPage : ContentPage
         Button button = (Button)sender;
         StageModel bindingContext = (StageModel)button.BindingContext;
         VMEditStage.ProjectStage = bindingContext;
+        VMEditStage.newstage = false;
         var editPage = new EditStagePage();
         Navigation.PushAsync(editPage);
+    }
+
+    private void Button_Clicked_2(object sender, EventArgs e)
+    {
+        Button button = (Button)sender;
+        Project bindingContext = (Project)button.BindingContext;
+        VMEditStage.idTask = bindingContext.Tasks.Id;
+        var editPage = new EditStagePage();
+        VMEditStage.newstage = true;
+        Navigation.PushAsync(editPage);
+        
     }
 }

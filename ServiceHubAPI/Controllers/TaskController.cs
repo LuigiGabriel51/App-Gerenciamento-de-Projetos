@@ -96,9 +96,25 @@ namespace ServiceHubAPI.Controllers
         [HttpPut("/PutStage")]
         public async Task<ActionResult> PutStage([FromBody] StageModel stage)
         {
-            if (stage == null) { return BadRequest(); }
-            context.Stages.Update(stage);
+            if (stage == null)
+            {
+                return BadRequest();
+            }
+
+            var existingStage = context.Stages.Find(stage.Id);
+
+            if (existingStage == null)
+            {
+                return NotFound();
+            }
+
+            context.Entry(existingStage).CurrentValues.SetValues(stage);
+
+            // Marque a entidade como modificada para que o Entity Framework a atualize no banco de dados
+            context.Entry(existingStage).State = EntityState.Modified;
+
             await context.SaveChangesAsync();
+
             return Ok(StatusCode(200));
         }
 

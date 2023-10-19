@@ -52,10 +52,10 @@
                             </DataTrigger>
                         </ListView.Triggers>
                     </ListView>
-                    <Label Text="Nenhuma atividade para hoje" VerticalOptions="Center" Grid.Row="1">
+                    <Label Text="Nenhuma atividade para hoje" VerticalOptions="Center" Grid.Row="1" IsVisible="false">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding stages.Count}" Value="0">
-                                <Setter Property="IsVisible" Value="True" />
+                            <DataTrigger TargetType="Label" Binding="{Binding numEstagio}" Value="0">
+                                <Setter Property="IsVisible" Value="True"/>
                             </DataTrigger>
                         </Label.Triggers>
                     </Label>
@@ -124,13 +124,13 @@
                     <Button Padding="0" TextColor="White" BackgroundColor="DarkSalmon" Clicked="EventEmployes">
                         <Button.Triggers>
                             <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Chefe">
-                                <Setter Property="Text" Value="Adicionar/remover funcionário"/>
+                                <Setter Property="Text" Value="Adicionar/remover funcionário 🙎‍♂🙎‍♀️"/>
                             </DataTrigger>
                             <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Gerente">
-                                <Setter Property="Text" Value="Adicionar/remover funcionário"/>
+                                <Setter Property="Text" Value="Adicionar/remover funcionário 🙎‍♂🙎‍♀️"/>
                             </DataTrigger>
                             <DataTrigger TargetType="Button" Binding="{Binding Cargo}" Value="Funcionário">
-                                <Setter Property="Text" Value="Outros funcionários"/>
+                                <Setter Property="Text" Value="Outros funcionários 🙎‍♂🙎‍♀️"/>
                             </DataTrigger>
                         </Button.Triggers>
                     </Button>

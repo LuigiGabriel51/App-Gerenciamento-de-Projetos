@@ -200,5 +200,75 @@ namespace ServiceHub
                 return null;
             }
         }
+
+        public async Task<bool> AddProject(TaskModel project)
+        {
+            Uri uri = new Uri($"{_url}Projects");
+            try
+            {
+                string jsonMessage = JsonConvert.SerializeObject(project);
+                var content = new StringContent(jsonMessage, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(uri, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var strcontent = await response.Content.ReadAsStringAsync();
+                    var Project = JsonConvert.DeserializeObject<TaskModel>(strcontent);
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateStage(StageModel project)
+        {
+            Uri uri = new Uri($"{_url}PutStage");
+
+            try
+            {
+                string jsonMessage = JsonConvert.SerializeObject(project);
+                var content = new StringContent(jsonMessage, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PutAsync(uri, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var strcontent = await response.Content.ReadAsStringAsync();
+                    var Project = JsonConvert.DeserializeObject<TaskModel>(strcontent);
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> AddStage(StageModel project)
+        {
+            Uri uri = new Uri($"{_url}AddStage");
+            try
+            {
+                string jsonMessage = JsonConvert.SerializeObject(project);
+                var content = new StringContent(jsonMessage, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(uri, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var strcontent = await response.Content.ReadAsStringAsync();
+                    var Project = JsonConvert.DeserializeObject<TaskModel>(strcontent);
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

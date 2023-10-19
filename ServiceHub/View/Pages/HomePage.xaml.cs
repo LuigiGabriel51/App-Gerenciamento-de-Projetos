@@ -24,7 +24,7 @@ public partial class HomePage : ContentPage
 
             if (cargo == "Chefe" || cargo == "Gerente")
             {
-                await Navigation.PushAsync(new AddProjectsPage());
+                await Navigation.PushAsync(new AddProjectPage());
             }
             else if (cargo == "Funcionário")
             {

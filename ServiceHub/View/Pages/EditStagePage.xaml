@@ -21,12 +21,12 @@
                 <Label Text="{Binding Stages.NameStage, StringFormat='Estágio: {0}'}" 
                                                                            TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Row="0" />
                 <Entry BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"
-                           Text="{Binding NewStages.NameStage}" TextColor="{AppThemeBinding Dark=Black,Light=White}"
+                           Text="{Binding NameS}" TextColor="{AppThemeBinding Dark=Black,Light=White}"
                            MaxLength="35" PlaceholderColor="Silver" Placeholder="Nome do estágio"/>
                 <Label Text="{Binding Stages.Description, StringFormat='Descrição: {0}'}" 
                                                                            TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Row="1"/>
                 <Editor BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"
-                        Text="{Binding NewStages.Description}" TextColor="{AppThemeBinding Dark=Black,Light=White}"
+                        Text="{Binding DescriptionS}" TextColor="{AppThemeBinding Dark=Black,Light=White}"
                         HeightRequest="100" AutoSize="TextChanges" PlaceholderColor="Silver"
                         Placeholder="Descrição do estágio" MaxLength="155"
                         />
@@ -38,12 +38,13 @@
                     <Label Text="{Binding Stages.DateInit, StringFormat='Data de Início: {0:dd/MM/yyyy}'}" 
                            TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Column="0" VerticalOptions="Center"
                            HorizontalOptions="Start"/>
-                    <DatePicker Date="{Binding NewStages.DateInit}" Grid.Column="1" VerticalOptions="Center"
-                           HorizontalOptions="Center" BackgroundColor="LightPink" FontAttributes="Bold"/>
+                    <DatePicker Date="{Binding DateS}" Grid.Column="1" VerticalOptions="Center"
+                           HorizontalOptions="Center" BackgroundColor="LightPink" FontAttributes="Bold"
+                                x:Name="date"/>
                 </Grid>
                 <Label Text="{Binding Stages.TimeFrame, StringFormat='Prazo de Conclusão: {0} dias'}"
                                                TextColor="{AppThemeBinding Dark=White,Light=Black}" Grid.Row="3"/>
-                <Entry Keyboard="Numeric" Text="{Binding NewStages.TimeFrame}" BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"
+                <Entry Keyboard="Numeric" Text="{Binding TimeFrame}" BackgroundColor="{AppThemeBinding Dark=White,Light=Black}"
                        TextColor="{AppThemeBinding Dark=Black,Light=White}" MaxLength="4"
                        PlaceholderColor="Silver" Placeholder="Prazo de conclusão"/>
                 <Grid>
@@ -63,10 +64,10 @@
                             </DataTrigger>
                         </Label.Triggers>
                     </Label>
-                    <Switch IsToggled="{Binding NewStages.Conclusao}" Toggled="Switch_Toggled" x:Name="key"
-                                Grid.Column="1" OnColor="LightGreen" ThumbColor="LightPink"/>
+                    <CheckBox   x:Name="key"  HorizontalOptions="End" CheckedChanged="key_CheckedChanged"
+                                Grid.Column="1" />
                 </Grid>
-                <Button Grid.Row="5" WidthRequest="150" Text="Salvar Projeto" Command="{Binding Update_Project}" HeightRequest="40"
+                <Button Grid.Row="5" WidthRequest="150" Text="Salvar Projeto" Command="{Binding AddStage}" HeightRequest="40"
         Margin="10" BackgroundColor="CadetBlue" FontAttributes="Bold" TextColor="White"/>
             </StackLayout>
         </Grid>

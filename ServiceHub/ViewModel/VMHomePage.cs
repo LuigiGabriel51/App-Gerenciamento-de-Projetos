@@ -5,6 +5,13 @@ namespace ServiceHub.ViewModel
 {
     public class VMHomePage : ObservableObject
     {
+        private int numestagio;
+        public int numEstagio
+        {
+            get => numestagio;
+            set => SetProperty(ref numestagio, value);
+        }
+
         private int numproject;
         public int NumProjects
         {
@@ -61,6 +68,7 @@ namespace ServiceHub.ViewModel
                 }
             }
             stages = stages_iconplete;
+            numEstagio = stages.Count;
             NumProjects = Projects.Count;
         }
     }
