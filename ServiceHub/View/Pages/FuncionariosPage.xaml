@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ServiceHub.View.Pages.FuncionariosPage"
+             xmlns:VM="clr-namespace:ServiceHub.ViewModel" xmlns:models="clr-namespace:ServiceHub.Model">
+    <ContentPage.BindingContext>
+        <VM:VMfuncionarios/>
+    </ContentPage.BindingContext>
+    
+    <ScrollView >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="500"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <VerticalStackLayout Spacing="10" Grid.RowSpan="2">
+                <Label Text="Lista de Funcionários" HorizontalOptions="Center" Margin="10" FontAttributes="Bold"
+           FontSize="17"/>
+
+                <Label Text="CEO" HorizontalOptions="Start" Margin="10" FontAttributes="Bold"/>
+                <ListView ItemsSource="{Binding UsersChefe}" HasUnevenRows="True" CachingStrategy="RecycleElementAndDataTemplate" 
+              SeparatorVisibility="None" ItemSelected="ListView_ItemSelected" x:Name="list1" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="15">
+                                    <Frame Padding="5" BackgroundColor="LightPink">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="20"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Grid.RowSpan="2" CornerRadius="50" Padding="0" WidthRequest="60">
+                                                <Image Source="{Binding ImagePerfil}" Aspect="AspectFill"/>
+                                            </Frame>
+                                            <Label Text="{Binding Name}" Grid.Column="1" VerticalOptions="Center" TextColor="Black"
+                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding Office}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" TextColor="Black"
+                                       FontAttributes="Bold" FontSize="10"/>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Label Text="Gerente" HorizontalOptions="Start" Margin="10" FontAttributes="Bold"/>
+                <ListView ItemsSource="{Binding UsersGerente}" HasUnevenRows="True"  CachingStrategy="RecycleElementAndDataTemplate"
+              ItemSelected="ListView_ItemSelected" SeparatorVisibility="None" x:Name="list2" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="15">
+                                    <Frame Padding="5" BackgroundColor="LightPink">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="20"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Grid.RowSpan="2" CornerRadius="50" Padding="0" WidthRequest="60">
+                                                <Image Source="{Binding ImagePerfil}" Aspect="AspectFill"/>
+                                            </Frame>
+                                            <Label Text="{Binding Name}" Grid.Column="1" VerticalOptions="Center" TextColor="Black"
+                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding Office}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" TextColor="Black"
+                                       FontAttributes="Bold" FontSize="10"/>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Label Text="Funcionários" HorizontalOptions="Start" Margin="10" FontAttributes="Bold"/>
+                <ListView ItemsSource="{Binding UsersComum}" HasUnevenRows="True" CachingStrategy="RecycleElementAndDataTemplate"
+                          ItemSelected="ListView_ItemSelected" SeparatorVisibility="None" x:Name="list3" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="15">
+                                    <Frame Padding="5" BackgroundColor="LightPink">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="20"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Frame Grid.RowSpan="2" CornerRadius="50" Padding="0" WidthRequest="60">
+                                                <Image Source="{Binding ImagePerfil}" Aspect="AspectFill"/>
+                                            </Frame>
+                                            <Label Text="{Binding Name}" Grid.Column="1" VerticalOptions="Center" TextColor="Black"
+                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding Office}" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" TextColor="Black"
+                                       FontAttributes="Bold" FontSize="10"/>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </VerticalStackLayout>
+            <Button Text="{Static models:IconFont.Plus}" Clicked="Button_Clicked_1" Grid.Row="1" HeightRequest="60" WidthRequest="60"
+                    FontFamily="fasolid" CornerRadius="30" HorizontalOptions="End" Margin="20"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

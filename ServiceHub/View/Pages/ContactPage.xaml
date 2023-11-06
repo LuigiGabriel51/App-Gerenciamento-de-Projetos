@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ServiceHub.View.Pages.ContactPage"
+             xmlns:Models="clr-namespace:ServiceHub.Model"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             xmlns:VM="clr-namespace:ServiceHub.ViewModel"
+             >
+
+
+    <ContentPage.BindingContext>
+        <VM:VMcontacts/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout>
+
+        <Label Text="{Binding User.Name, StringFormat='Olá, {0}'}" 
+           HorizontalOptions="Center" Margin="30" FontAttributes="Bold" FontSize="15"/>
+
+        <Frame WidthRequest="200" HeightRequest="200" CornerRadius="100" Padding="0">
+            <Grid>
+                <Image Source="usuario" Aspect="AspectFit" />
+                <Image Source="{Binding Image, Mode=OneWay, Converter={StaticResource ByteArrayToImageSourceConverter}}" 
+                   Aspect="Center" HeightRequest="180"/>
+            </Grid>
+        </Frame>
+
+        <HorizontalStackLayout Margin="50,30,0,0" Spacing="50">
+            <Label Text="{Binding User.Office, StringFormat='CARGO: {0}'}"  WidthRequest="110"
+            MaxLines="3"  HorizontalOptions="Start"/>
+
+            <Label Text="{Binding User.CPF, StringFormat='CPF: {0}'}"  WidthRequest="110"
+            MaxLines="3"  HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Margin="50,30,0,0" Spacing="50">
+            <Label Text="{Binding User.Date, StringFormat='Nascimento: {0:dd/MM/yyyy}'}" WidthRequest="110"
+    MaxLines="3"  HorizontalOptions="Start"/>
+
+            <Label Text="{Binding User.Telefone, StringFormat='Telefone: {0}'}" WidthRequest="110"
+    MaxLines="3"  HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Margin="50,30,0,0" Spacing="50">
+            <Label Text="{Binding User.Email, StringFormat='Email:  {0}'}" WidthRequest="110"
+        MaxLines="2"  HorizontalOptions="Start"/>
+
+            <Label Text="{Binding User.Sexo, StringFormat='Sexo: {0}'}" WidthRequest="110"
+        MaxLines="3"  HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+        
+        <Button Text="{Static Models:IconFont.Whatsapp}" FontFamily="fabrands" HorizontalOptions="Center"
+                WidthRequest="100" TextColor="CadetBlue" FontSize="25" Padding="0"
+                Clicked="Button_Clicked" 
+                Margin="30"/>
+    </VerticalStackLayout>
+</ContentPage>

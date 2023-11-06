@@ -1,6 +1,7 @@
 ﻿using Firebase.Iid;
 using Plugin.Firebase.CloudMessaging;
 using ServiceHub.Model;
+using ServiceHub.ViewModel;
 
 namespace ServiceHub.View.Pages
 {
@@ -29,10 +30,15 @@ namespace ServiceHub.View.Pages
                 {
                     Rest.UpdateToken(InicializeApp.User.Id, refreshedToken);
                 }
+                Thread thread = new(getUsers);
+                thread.IsBackground = true;
+                thread.Start();
                 await Shell.Current.GoToAsync("///HomePage");
             }
         }
-
-
+        public async void getUsers()
+        {
+            VMfuncionarios.UserModels = await Rest.GetUsers();
+        }
     }
 }

@@ -2,22 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ServiceHub.View.Pages.MainPage">
-
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="usuario" Margin="40"/>
+            <Frame Grid.Row="1" BackgroundColor="{AppThemeBinding Dark=White, Light={StaticResource Gray100}}" 
+                   CornerRadius="30" Margin="0,0,0,-30" BorderColor="Transparent">
+                <StackLayout Orientation="Vertical" Padding="10" Spacing="50">
+                    <Label Text="Login " TextColor="Black" FontSize="18" FontAttributes="Bold"/>
 
-            <Entry Placeholder="CPF" x:Name="cpf" Text="61308649304"/>
-            <Entry Placeholder="Senha" x:Name="senha" Text="bagriel51"/>
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                HorizontalOptions="Center" Clicked="LoginBT"/>
+                    <Frame  BorderColor="#ebe6e6" HeightRequest="60" Padding="10">
+                        <Entry Placeholder="CPF" x:Name="cpf"  TextColor="{StaticResource Gray500}" FontAttributes="Bold"/>
+                    </Frame>
 
-        </VerticalStackLayout>
+                    <Frame BorderColor="#ebe6e6" HeightRequest="60" Padding="10">
+                        <Entry Placeholder="Senha" x:Name="senha" TextColor="{StaticResource Gray500}" FontAttributes="Bold" />
+                    </Frame>
+
+                    <Button
+                            x:Name="CounterBtn" BackgroundColor="{StaticResource Primary}"
+                            Text="Login" HeightRequest="60" WidthRequest="200" TextColor="White" FontAttributes="Bold"
+                            SemanticProperties.Hint="Counts the number of times you click"
+                            HorizontalOptions="Center" Clicked="LoginBT"/>
+                </StackLayout>
+            </Frame>
+
+        </Grid>
     </ScrollView>
 
 </ContentPage>

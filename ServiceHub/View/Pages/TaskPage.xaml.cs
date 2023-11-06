@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using ServiceHub.Model;
 using ServiceHub.ViewModel;
 
@@ -12,6 +14,7 @@ public partial class TaskPage : ContentPage
         {
             buttonEdit.IsVisible = false;
             buttonEdit.IsEnabled = false;
+            
         }
     }
 
@@ -68,5 +71,34 @@ public partial class TaskPage : ContentPage
         VMEditStage.newstage = true;
         Navigation.PushAsync(editPage);
         
+    }
+
+    private async void Button_Clicked_3(object sender, EventArgs e)
+    {
+        bool confirm = await DisplayAlert("Alerta", "Deseja reslmente excluir esse estágio?", "Sim","Não");
+        if(confirm)
+        {
+            Button button = (Button)sender;
+            StageModel bindingContext = (StageModel)button.BindingContext;
+            RestService rest = new();
+
+            var res = await rest.DelStage(bindingContext);
+            if (res)
+            {
+                Toast toast = new Toast()
+                {
+                    Text = "Estágio excluído com sucesso!"
+                };
+                await toast.Show();
+            }
+            else
+            {
+                Toast toast = new Toast()
+                {
+                    Text = "Erro ao excluir estágio"
+                };
+                await toast.Show();
+            }
+        }
     }
 }

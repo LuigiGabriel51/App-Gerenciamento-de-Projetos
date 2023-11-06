@@ -9,7 +9,7 @@ namespace ServiceHub
     public class RestService
     {
         private HttpClient _httpClient;
-        private const string _url = "https://00712kb2-7085.brs.devtunnels.ms/";
+        private const string _url = "https://ql33c2kw-7085.brs.devtunnels.ms/";
         public RestService()
         {
             _httpClient = new HttpClient();
@@ -27,6 +27,8 @@ namespace ServiceHub
                     var user = JsonConvert.DeserializeObject<UserModel>(content);
 
                     InicializeApp.User = user;
+                    if (InicializeApp.User.LevelPermission == Permission.NV1) InicializeApp.permission = false;
+                    else InicializeApp.permission = true;
                     return true;
                 }
                 else
@@ -268,6 +270,54 @@ namespace ServiceHub
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public async Task<bool> DelStage(StageModel project)
+        {
+            Uri uri = new Uri($"{_url}DeleteStage?id={project.Id}");
+            try
+            {
+                string jsonMessage = JsonConvert.SerializeObject(project);
+                var content = new StringContent(jsonMessage, Encoding.UTF8, "application/json");
+                var response = await _httpClient.DeleteAsync(uri.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    var strcontent = await response.Content.ReadAsStringAsync();
+                    var Project = JsonConvert.DeserializeObject<TaskModel>(strcontent);
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<UserModel>> GetUsers()
+        {
+            Uri uri = new($"{_url}User");
+            try
+            {
+                var response = await _httpClient.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var ProjectsUser = JsonConvert.DeserializeObject<List<UserModel>>(content);
+                    return ProjectsUser;
+                }
+                return null;
+            }
+            catch
+            {
+                Toast toast = new()
+                {
+                    Text = "Falha ao carregar usuários!"
+                };
+                await toast.Show();
+                return null;
             }
         }
     }

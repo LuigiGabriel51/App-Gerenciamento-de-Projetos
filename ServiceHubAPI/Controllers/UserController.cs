@@ -21,7 +21,8 @@ namespace ServiceHub.Controllers
         {
             _context = context;
         }
-         [HttpGet]
+
+        [HttpGet]
         public async Task<ActionResult> GetUsers()
         {
             var Users = await _context.Users.ToListAsync();

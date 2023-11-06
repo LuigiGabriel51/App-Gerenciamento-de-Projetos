@@ -10,7 +10,7 @@ namespace ServiceHub.Model
         {
             db = new DataBaseUser();
         }
-
+        public static bool permission {  get; set; }
         public static UserModel User { get; set; }
 
         public static UserModel GetUser()
@@ -30,6 +30,5 @@ namespace ServiceHub.Model
                 db.Update(user);
             }
         }
-
     }
 }

@@ -127,10 +127,11 @@ namespace ServiceHubAPI.Controllers
             return Ok(StatusCode(200));
         }
         [HttpDelete("/DeleteStage")]
-        public async Task<ActionResult> DeleteStage([FromBody] StageModel stage)
+        public async Task<ActionResult> DeleteStage(int id)
         {
-            if (stage == null) { return BadRequest(); }
-            context.Stages.Remove(stage);
+            if (id == 0) { return BadRequest(); }
+
+            context.Stages.Where(x => x.Id == id).ExecuteDelete();
             await context.SaveChangesAsync();
             return Ok(StatusCode(200));
         }

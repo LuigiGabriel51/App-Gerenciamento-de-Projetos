@@ -1,3 +1,6 @@
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using ServiceHub.Model;
 using ServiceHub.ViewModel;
 
 namespace ServiceHub.View.Pages;
@@ -33,22 +36,15 @@ public partial class HomePage : ContentPage
         }
     }
 
-    private void EventEmployes(object sender, EventArgs e)
+    private async void EventEmployes(object sender, EventArgs e)
     {
-        Button button = (Button)sender;
-        var model = button.BindingContext as VMHomePage; // Substitua 'SeuModeloDeDados' pelo tipo correto do seu modelo
-        if (model != null)
+        if(VMfuncionarios.UserModels == null) 
         {
-            string cargo = model.Cargo;
-
-            if (cargo == "Chefe" || cargo == "Gerente")
-            {
-                //await Navigation.PushAsync(new UpdateEmployes());
-            }
-            else if (cargo == "Funcionário")
-            {
-                //await Navigation.PushAsync(new ViewEmployes());
-            }
+            Toast t = new Toast() { Text = "Carregando funcionários, aguarde..." , Duration = ToastDuration.Long};
+            await t.Show();
+            return;
         }
+        var page = new FuncionariosPage(InicializeApp.User.LevelPermission);
+        await Navigation.PushAsync(page);
     }
 }

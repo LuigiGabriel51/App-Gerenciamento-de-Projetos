@@ -103,9 +103,23 @@
                                                             </DataTrigger>
                                                         </Label.Triggers>
                                                     </Label>
-                                                    <Button Grid.Row="3" x:Name="buttonEditStages" WidthRequest="120" BackgroundColor="LightPink"
-                                                 Text="Editar Estágio" Padding="0" TextColor="White" FontAttributes="Bold" Clicked="buttonEditStages_Clicked">
-                                                    </Button>
+                                                    <Grid Grid.Row="3">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Button WidthRequest="120" BackgroundColor="LightPink" HeightRequest="30"
+                                                                Text="Editar Estágio" Padding="0" TextColor="White" FontAttributes="Bold" Clicked="buttonEditStages_Clicked"
+                                                                IsVisible="{Static Models:InicializeApp.permission}">
+                                                        </Button>
+                                                        <Button Grid.Column="1"  WidthRequest="50" BackgroundColor="LightPink" HeightRequest="30"
+                                                                Text="{Static Models:IconFont.TrashCan}" Padding="0" TextColor="White" FontAttributes="Bold" 
+                                                                Clicked="Button_Clicked_3" HorizontalOptions="End" FontFamily="fasolid"
+                                                                IsVisible="{Static Models:InicializeApp.permission}" VerticalOptions="Start">
+                                                        </Button>
+                                                    </Grid>
+                                                    
+
                                                 </VerticalStackLayout>
                                             </Frame>
                                         </Grid>
@@ -115,7 +129,8 @@
                         </ListView>
                         <Button Grid.Row="3" WidthRequest="60" HeightRequest="40" Text="{Static Models:IconFont.Plus}"
                                 BackgroundColor="CadetBlue" FontAttributes="Bold" FontSize="20" Padding="0"
-                                TextColor="White" Clicked="Button_Clicked_2"/>
+                                TextColor="White" Clicked="Button_Clicked_2" IsVisible="{Static Models:InicializeApp.permission}"/>
+                      
                     </Grid>
                 </Frame>
                 <Grid.GestureRecognizers>
