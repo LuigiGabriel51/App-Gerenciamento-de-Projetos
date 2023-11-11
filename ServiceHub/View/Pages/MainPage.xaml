@@ -8,7 +8,9 @@
             <RowDefinition Height="200"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image Source="usuario" Margin="40"/>
+            <Image Source="logo" Margin="40,50,40,40"/>
+            <Label Text="ServiceHub" HorizontalOptions="Center" VerticalOptions="Start" Margin="20" FontSize="20"
+                   FontAttributes="Bold" TextColor="#fed3a9"/>
             <Frame Grid.Row="1" BackgroundColor="{AppThemeBinding Dark=White, Light={StaticResource Gray100}}" 
                    CornerRadius="30" Margin="0,0,0,-30" BorderColor="Transparent">
                 <StackLayout Orientation="Vertical" Padding="10" Spacing="50">
@@ -23,10 +25,10 @@
                     </Frame>
 
                     <Button
-                            x:Name="CounterBtn" BackgroundColor="{StaticResource Primary}"
-                            Text="Login" HeightRequest="60" WidthRequest="200" TextColor="White" FontAttributes="Bold"
+                            x:Name="CounterBtn" BackgroundColor="#fed3a9"
+                            Text="Login" HeightRequest="60" WidthRequest="200" TextColor="Black" FontAttributes="Bold"
                             SemanticProperties.Hint="Counts the number of times you click"
-                            HorizontalOptions="Center" Clicked="LoginBT"/>
+                            HorizontalOptions="Center" Clicked="LoginBT" BorderColor="White"/>
                 </StackLayout>
             </Frame>
 
